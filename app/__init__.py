@@ -17,7 +17,7 @@ app.config.from_object(DevConfig)
 # app.config.from_pyfile('config.py')
 
 
-
+  
 
 bootstrap = Bootstrap()
 db = SQLAlchemy()
