@@ -1,0 +1,49 @@
+<!-- {% macro displayPitcheList(pitch_list) %}
+
+    {% for pitch in pitch_list %}
+        <div class="col-xs-12 col-sm-4 col-md-2 col-lg-2 pitch-card">
+            <img src="{{ pitch.poster }}" alt="{{ pitch.title }} poster" class="img-responsive">
+            <li class="text-center">
+                <a href="/pitch/{{pitch.id}}">
+                    {{ pitch.title|truncate(10)}}</a>
+            </li>
+        </div>
+
+    {% endfor %}
+
+{% endmacro %} -->
+<!-- < Displaying reviews macro -->
+<!-- {% macro displayPitchList(pitch_list) %}
+    {% for post in pitch_list %}
+    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 pitch-card">
+        <h2> {{ pitch.title}} </h2>
+        <p> {{ post.post| truncate(30) }}</p>
+    </div>
+    {% endfor %}
+{% endmacro %} 
+
+
+{% macro displayCommentList(pitch_list) %}
+    {%for comment in form%}
+    <p>{{comment.title}}</p>
+{%endfor%}
+{% endmacro %}  -->
+
+<!-- {%for comment in form%}
+<p>{{comment.title}}</p>
+{%endfor%} -->
+
+{% macro displayQuoteList(quote_list) %}
+
+    {% for quote in quote_list %}
+        <div class="col-xs-12 col-sm-4 col-md-2 col-lg-2 movie-card">
+            <img src="{{ movie.poster }}" alt="{{ movie.title }} poster" class="img-responsive">
+            <li class="text-center">
+                <a href="/movie/{{movie.id}}">
+                    {{ quote.author}}</a>
+            </li>
+        </div>
+
+    {% endfor %}
+
+{% endmacro %}

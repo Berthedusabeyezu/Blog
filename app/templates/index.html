@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        {% if title %}
+        <title> {{ title }}</title>
+        {% else %}
+        <title> Welcome to the best Blog Post Web</title>
+        {% endif %}
+        {% extends 'base.html'%}
+        {% import 'macros.html' as macro%}
+
+<!-- Styles block -->
+
+        {% block styles%}
+        {{ super() }}
+        <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+        {% endblock %}
+        
+    </head>
+  
+    <body>
+    
+
+    <!-- Content block -->
+   
+{% block content %}
+
+<div class="container">
+    <!-- <form>
+        <input type="text" name="pitche_query" placeholder="Search for a Pitch" class="form-control">
+        <input type="submit"  value="Submit" class="btn btn-default">
+    </form> -->
+    <div class="row">
+       
+    
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 quote-details">
+            <h3>{{ quote.author }}</h3>
+    
+            <p class="content"> {{ quote.content }}</p>
+            
+    
+            <a class="ratings" href="/quote/new/{{quote.id}}"> </a> 
+    
+    </div>
+    </div>
+    <a href="/post/new" class="btn">new post</a>
+
+   
+
+<h1>{{quote.id}}</h1>
+
+
+{%for post in posts%}
+    <p>{{post.description}}</p>
+<a href="/comment/new/{{post.id}}" >new comment</a>
+{%endfor%}
+
+{%for comment in form%}
+    <p>{{comment.comment}}</p>
+{%endfor%}
+
+ 
+{% endblock%}
+ 
+
+</div>
+</body>
+</html>
