@@ -14,15 +14,15 @@ from ..request import get_quote
 
 @main.route('/')
 def index():
- 
-
+       
     posts=Post.query.all()
    
     title = 'Home - Welcome to The best Blog Post Web'
     quote = get_quote()
 
     return render_template('index.html', title = title, quote = quote, posts = posts)
-    #  return render_template('index.html', title = title, quote=quote, posts = posts)
+    
+    
 @main.route('/posts/<int:id>')
 def posts(post_id):
 
