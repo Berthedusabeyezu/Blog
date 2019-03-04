@@ -39,7 +39,7 @@ def create_app(config_name):
     app.config.from_object(config_options[config_name])
   
     # configure UploadSet
-    configure_uploads(app,photos)
+    configure_uploads(app,photos)   
 
     from .request import configure_request
     configure_request(app)
