@@ -30,7 +30,7 @@ class User(UserMixin,db.Model):
     def password(self, password):
         self.pass_secure = generate_password_hash(password)
  
-
+ 
     def verify_password(self,password):
             return check_password_hash(self.pass_secure,password)
 
@@ -67,7 +67,7 @@ def save_comment():
     db.session.commit()
    
        
-class Quote:
+class Quote: 
     '''
     Quote class to define Quote Objects
     '''
