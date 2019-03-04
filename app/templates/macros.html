@@ -15,22 +15,27 @@
 {% endmacro %} 
 
 
+
 {% macro displayComment(comments) %}
 <h3>Comments</h3>
 
-    {%for comment in comments%}
+{%for comment in comments%}
     <p>{{comment.comment}}</p>
 {%endfor%}
 {% endmacro %}  
-
+{% macro displayComment(comments) %}
+{%for delete in comments%}
+    <a href="/delete/new/{{word.id}}"><button><strong>DELETE</strong></button></a> 
+{%endfor%}
+{% endmacro %}
 
 {% macro displayQuoteList(quote_list) %}
 
     {% for quote in quote_list %}
-        <div class="col-xs-12 col-sm-4 col-md-2 col-lg-2 movie-card">
-            <img src="{{ movie.poster }}" alt="{{ movie.title }} poster" class="img-responsive">
+        <div class="col-xs-12 col-sm-4 col-md-2 col-lg-2 quote-card">
+            <img src="{{ quote.poster }}" alt="{{ quote.title }} poster" >
             <li class="text-center">
-                <a href="/movie/{{movie.id}}">
+                <a href="/quote/{{quote.id}}">
                     {{ quote.author}}</a>
             </li>
         </div>

@@ -71,7 +71,9 @@ class Comment(db.Model):
       comments=Comment.query.filter_by(post_id=id).all()
       return comments
    
-         
+    def delete_comment(self):
+        db.session.delete(self)
+        db.session.commit()
 class Quote: 
     '''
     Quote class to define Quote Objects
@@ -81,3 +83,7 @@ class Quote:
         self.id =id
         self.author = author
         self.quote = quote
+
+def delete_comment(self):
+        db.session.delete(self)
+        db.session.commit()

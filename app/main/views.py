@@ -105,9 +105,17 @@ def new_comment(id):
         db.session.add(new_comment)
         db.session.commit()
         return redirect(url_for('main.index'))
-    
+    comment=Comment.query.filter_by(post_id=id).all()
 
-    return render_template('new_comment.html',comment_form=form)
+    return render_template('comment.html',comment_form=form , comment=comment)
 
+@main.route('/delete/new/<int:id>', methods=['GET','POST'])
+def delete_comment(id):
+    comment = Comment.query.filter_by(id=id).first()
+    form = CommentForm()
+    if comment is not None:
+        comment.delete_comment()
+        
+    return render_template('comment.html', comment_form = form)
 
-    
+      

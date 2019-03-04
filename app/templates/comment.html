@@ -8,7 +8,11 @@
 
         {{ wtf.quick_form(comment_form) }}
 
-       
+        {% for word in comment %}
+         <p>{{word.comment}}</p>
+         <a href="/delete/new/{{word.id}}"><button><strong>DELETE</strong></button></a>
+        {% endfor %}
+
         
     </div>
 
