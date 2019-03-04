@@ -14,7 +14,7 @@ from ..request import get_quote
 
 @main.route('/')
 def index():
-
+ 
 
     posts=Post.query.all()
    
