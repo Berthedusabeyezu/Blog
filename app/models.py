@@ -66,7 +66,7 @@ def save_comment():
     db.session.add(new_comment)
     db.session.commit()
    
-       
+         
 class Quote: 
     '''
     Quote class to define Quote Objects
