@@ -34,4 +34,4 @@ def get_quote():
         
     return quote_objects    
 
- 
+  
