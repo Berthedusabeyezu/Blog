@@ -18,8 +18,6 @@ class User(UserMixin,db.Model):
     pass_secure = db.Column(db.String(255))
     bio = db.Column(db.String(255))
     profile_pic_path = db.Column(db.String())
-    password_secure = db.Column(db.String(255))
-    password_hash = db.Column(db.String(255)) 
     comment = db.relationship('Comment', backref='user',lazy='dynamic')
     post = db.relationship('Post' ,backref='user', lazy='dynamic')
     @property
@@ -45,14 +43,16 @@ class Post(db.Model):
     title = db.Column(db.String(255))
     description = db.Column(db.String(255))
     user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
-    comment=db.relationship('Comment',backref='post', lazy='dynamic')
+    comments=db.relationship('Comment',backref='post', lazy='dynamic')
     
-def save_post():
-  
-    db.session.add(self)
-    db.session.commit() 
-
-
+    def save_post():
+    
+        db.session.add(self)
+        db.session.commit() 
+    @classmethod
+    def get_all_post(cls):
+    
+        return Post.query.all()
 class Comment(db.Model):
     __tablename__ = 'comments'
 
@@ -61,10 +61,15 @@ class Comment(db.Model):
     user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
     post_id = db.Column(db.Integer,db.ForeignKey('posts.id'))
 
-def save_comment():
+    def save_comment():
 
-    db.session.add(new_comment)
-    db.session.commit()
+      db.session.add(new_comment)
+      db.session.commit()
+
+    @classmethod
+    def get_comments(cls,id):
+      comments=Comment.query.filter_by(post_id=id).all()
+      return comments
    
          
 class Quote: 

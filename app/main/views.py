@@ -18,18 +18,22 @@ def index():
     posts=Post.query.all()
    
     title = 'Home - Welcome to The best Blog Post Web'
+    # posts = posts.get_posts()
     quote = get_quote()
 
     return render_template('index.html', title = title, quote = quote, posts = posts)
     
     
-@main.route('/posts/<int:id>')
-def posts(post_id):
+@main.route('/post/<int:id>')
+def post(id):
+    post = Post.query.filter_by(id=id).first()
+    comments=Comment.get_comments(id=id)
 
+    
     '''
     View post page function that returns the post details page and its data
     '''
-    return render_template('post.html')
+    return render_template('post.html',post = post,comments=comments)
 
 @main.route('/post/new', methods = ['GET','POST'])
 @login_required
@@ -91,11 +95,12 @@ def update_pic(uname):
 @login_required
 def new_comment(id):
     form = CommentForm()
+    post=Post.query.filter_by(id=id).first()
     
 
     if form.validate_on_submit():
         comment = form.comment.data
-        new_comment = Comment(comment = comment, user_id = current_user.id)
+        new_comment = Comment(comment = comment,post=post, user_id = current_user.id)
 
         db.session.add(new_comment)
         db.session.commit()

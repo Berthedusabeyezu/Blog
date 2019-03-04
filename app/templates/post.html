@@ -1,4 +1,5 @@
 {% extends 'base.html'%}
+{% import 'macros.html' as macro%}
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,10 +11,12 @@
     <script src="main.js"></script>
 </head>
 <body>
-    {%block content%}
-    {%for post in posts%}
-    <p>{{post.post}}</p>
-    {%endfor%}
-    {%endblock%}
+   {%block content %}
+   <p>{{post.title}}</p>
+   <p>{{post.description}}</p>
+   {{macro.displayComment(comments)}}
+
+
+   {%endblock%}
 </body>
-</html>
+</html> 
