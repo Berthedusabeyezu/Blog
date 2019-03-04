@@ -50,7 +50,7 @@ class Post(db.Model):
 def save_post():
   
     db.session.add(self)
-    db.session.commit()
+    db.session.commit() 
 
 
 class Comment(db.Model):
