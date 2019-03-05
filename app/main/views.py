@@ -1,7 +1,7 @@
 from flask import render_template,request,redirect,url_for,abort
 from . import main
-from ..models import Post,User,Comment
-from .forms import PostForm,CommentForm
+from ..models import Post,User,Comment,Subscribe
+from .forms import PostForm,CommentForm,SubscribeForm,UpdateForm
 from flask_login import login_required, current_user
 from .forms import PostForm,UpdateProfile
 from .. import db,photos
@@ -109,13 +109,53 @@ def new_comment(id):
 
     return render_template('comment.html',comment_form=form , comment=comment)
 
+
+@main.route('/update/new/<int:id>', methods=['GET','POST'])
+def upgrade_blogs(id):
+    blogs=Post.query.filter_by(id=id).first()
+
+    if blogs is None:
+        abort(404)
+
+    form = UpdateForm()
+
+    if form.validate_on_submit():
+
+        blogs.blog=form.blog.data
+
+
+        db.session.add(blogs)
+        db.session.commit()
+
+        return redirect(url_for('main.index'))
+
+    return render_template('update.html',form = form,user= current_user) 
+
+
 @main.route('/delete/new/<int:id>', methods=['GET','POST'])
 def delete_comment(id):
     comment = Comment.query.filter_by(id=id).first()
     form = CommentForm()
     if comment is not None:
         comment.delete_comment()
-        
+        return redirect(url_for('main.index'))  
     return render_template('comment.html', comment_form = form)
 
-      
+
+
+@main.route('/subscribe',methods=["GET","POST"])
+def subscribe():
+    subscribe_form = SubscribeForm()
+
+    if subscribe_form.validate_on_submit():
+        email = subscribe_form.email.data
+        subscriber = Subscribe(email=email)
+        db.session.add(subscriber)
+        db.session.commit()
+        mail_message("Welcome to Blog","email/welcome_user",subscriber.email,user=subscriber)
+        return redirect(url_for('main.index'))
+        title = 'Subscribe'
+    return render_template('subscribe.html',subscribe_form = subscribe_form)
+
+
+    

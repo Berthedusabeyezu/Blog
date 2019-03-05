@@ -21,36 +21,37 @@
     </head>
   
     <body>
-    
+        
 
-    <!-- Content block -->
-   
-{% block content %}
-
-<div style="background-color: bisque">
-  
-    <div class="row">
-       
+        <!-- Content block -->
     
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 quote-details">
+        {% block content %}
+        <div class="container">
+    
+            <div class="row">
+            <center>
+                
+                    <a href="/subscribe" class="btn"><button><strong>Subscribe</strong></button></a>   
+                
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 quote-details">
+                    
+                        <h3>{{quote.id}} {{ quote.author }}</h3>
+                
+                        <p class="content"> {{ quote.quote }}</p>
+                        
+                        <a class="quote" href="/quote/new/{{quote.id}}"> </a> 
             
-            <h3>{{quote.id}} {{ quote.author }}</h3>
+                    </div>
+        
+            </div>
+            <a href="/post/new" class="btn"><button><strong>Add Post</strong></button></a>
     
-            <p class="content"> {{ quote.quote }}</p>
-            
+        {{macro.displayPost(posts)}}
+
+        </div>
+                </center>
+
+        {% endblock%}
     
-            <a class="quote" href="/quote/new/{{quote.id}}"> </a> 
-    
-    </div>
-    </div>
-    <a href="/post/new" class="btn">Add Post</a>
-
-    {{macro.displayPost(posts)}}
-
-
-</div>
-
-{% endblock%}
- 
-</body>
+    </body>
 </html>

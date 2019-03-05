@@ -1,14 +1,18 @@
 {% macro displayPost(posts) %}
 
     {% for post in posts %}
-        <div class="container">
-        
+        <div style="background-color: bisque">
+            <div class="container">
+            
 
-            <h2 class="tle">{{post.title}} </h2>
-            <p >{{post.description}}</p>
-            <a href="/post/{{post.id}}" class="pst"> view comment</a><br>
-            <a href="comment/new/{{post.id}}" class="btn btn_primary">Add Comment</a>
-        </div>
+                <h2 class="tle">{{post.title}} </h2>
+                <p >{{post.description}}</p>
+                <div class="bttn">
+                    <a href="/post/{{post.id}}" class="pst"><button><strong>view comment</strong></button></a><br>
+                    <a href="comment/new/{{post.id}}" class="btn btn_primary"><button><strong>Add Comment</strong></button></a>
+                    
+            </div>  
+        
 
     {% endfor %}
 
@@ -17,17 +21,19 @@
 
 
 {% macro displayComment(comments) %}
-<h3>Comments</h3>
+    <h3>Comments</h3>
 
-{%for comment in comments%}
-    <p>{{comment.comment}}</p>
+    {%for comment in comments%}
+        <p>{{comment.comment}}</p>
+        <a href="/delete/new/{{comment.id}}"><button><strong>DELETE</strong></button></a>
+        <a href="/update/new/{{comment.id}}"><button><strong>update</strong></button></a>
+
+    
 {%endfor%}
+
+       
 {% endmacro %}  
-{% macro displayComment(comments) %}
-{%for delete in comments%}
-    <a href="/delete/new/{{word.id}}"><button><strong>DELETE</strong></button></a> 
-{%endfor%}
-{% endmacro %}
+
 
 {% macro displayQuoteList(quote_list) %}
 
@@ -39,7 +45,8 @@
                     {{ quote.author}}</a>
             </li>
         </div>
-
+</div>
+</div>
     {% endfor %}
 
 {% endmacro %}

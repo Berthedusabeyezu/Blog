@@ -16,3 +16,12 @@ class UpdateProfile(FlaskForm):
 class CommentForm(FlaskForm):
     comment = TextAreaField('Comment ', validators=[Required()])
     submit = SubmitField('Submit')
+
+class SubscribeForm(FlaskForm):
+    email = StringField('Your Email Address',validators=[Required()])
+    name =  TextAreaField('Add your username', validators=[Required()])
+    submit = SubmitField('Submit')
+
+class UpdateForm(FlaskForm):
+    blog = TextAreaField('Post It !!', validators=[Required()])
+    submit = SubmitField('Update')

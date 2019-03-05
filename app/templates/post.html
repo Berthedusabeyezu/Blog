@@ -1,5 +1,6 @@
 {% extends 'base.html'%}
 {% import 'macros.html' as macro%}
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,11 +13,17 @@
 </head>
 <body>
    {%block content %}
+
    <p>{{post.title}}</p>
    <p>{{post.description}}</p>
    {{macro.displayComment(comments)}}
 
-
+  
    {%endblock%}
 </body>
 </html> 
+
+
+
+
+    
