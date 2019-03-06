@@ -6,7 +6,7 @@ from app.models import User,Post,Comment,Quote,Subscribe
 from  flask_migrate import Migrate, MigrateCommand
 
 # Creating app instance
-app = create_app('development')
+app = create_app('production')
 
 manager = Manager(app)
 manager.add_command('server',Server)
